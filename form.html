@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Анкета</title>
+
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: #f6f7f9;
+  padding: 15px;
+}
+
+h2 {
+  text-align: center;
+}
+
+label {
+  font-weight: bold;
+  display: block;
+  margin-top: 12px;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.buttons {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+}
+
+button {
+  flex: 1;
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.send {
+  background: #2ea6ff;
+  color: white;
+}
+
+.back {
+  background: #e0e0e0;
+}
+</style>
+</head>
+
+<body>
+
+<h2>📝 Анкета (15 вопросов)</h2>
+
+<label>1️⃣ Имя</label>
+<input id="name">
+
+<label>2️⃣ Возраст</label>
+<input id="age" type="number">
+
+<label>3️⃣ Пол</label>
+<select id="gender">
+  <option value="">Выберите</option>
+  <option>Мужской</option>
+  <option>Женский</option>
+</select>
+
+<label>4️⃣ Город</label>
+<input id="city">
+
+<label>5️⃣ Семейное положение</label>
+<select id="marital">
+  <option value="">Выберите</option>
+  <option>В браке</option>
+  <option>Не в браке</option>
+</select>
+
+<label>6️⃣ Род занятий</label>
+<select id="occupation">
+  <option value="">Выберите</option>
+  <option>Учусь</option>
+  <option>Работаю</option>
+  <option>Самозанятый</option>
+  <option>В поиске</option>
+</select>
+
+<label>7️⃣ Опыт</label>
+<select id="experience">
+  <option value="">Выберите</option>
+  <option>Нет</option>
+  <option>Небольшой</option>
+  <option>Есть опыт</option>
+  <option>Профи</option>
+</select>
+
+<label>8️⃣ Цель</label>
+<select id="goal">
+  <option value="">Выберите</option>
+  <option>Обучение</option>
+  <option>Доход</option>
+  <option>Развитие</option>
+  <option>Общение</option>
+</select>
+
+<label>9️⃣ Время в день</label>
+<select id="time">
+  <option value="">Выберите</option>
+  <option>1–2 часа</option>
+  <option>3–4 часа</option>
+  <option>5+ часов</option>
+</select>
+
+<label>🔟 Устройство</label>
+<input id="device" placeholder="Телефон / ПК">
+
+<label>1️⃣1️⃣ Навыки</label>
+<input id="skills">
+
+<label>1️⃣2️⃣ Язык</label>
+<input id="language">
+
+<label>1️⃣3️⃣ Часовой пояс</label>
+<input id="timezone">
+
+<label>1️⃣4️⃣ Контакт для связи</label>
+<input id="contact">
+
+<label>1️⃣5️⃣ Комментарий</label>
+<textarea id="comment"></textarea>
+
+<div class="buttons">
+  <button class="back" onclick="goBack()">⬅️ Назад</button>
+  <button class="send" onclick="sendForm()">✅ Отправить</button>
+</div>
+
+<script>
+const tg = window.Telegram.WebApp;
+
+function goBack() {
+  tg.close();
+}
+
+function sendForm() {
+  const data = {
+    name: name.value,
+    age: age.value,
+    gender: gender.value,
+    city: city.value,
+    marital: marital.value,
+    occupation: occupation.value,
+    experience: experience.value,
+    goal: goal.value,
+    time: time.value,
+    device: device.value,
+    skills: skills.value,
+    language: language.value,
+    timezone: timezone.value,
+    contact: contact.value,
+    comment: comment.value
+  };
+
+  tg.sendData(JSON.stringify(data));
+  tg.close();
+}
+</script>
+
+</body>
+</html>
